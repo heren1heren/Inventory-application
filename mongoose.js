@@ -1,11 +1,11 @@
 import mongoose, { Schema } from 'mongoose';
-
+import dotenv from 'dotenv';
+dotenv.config();
 mongoose.set('strictQuery', false);
-const mongoDB =
-  'mongodb+srv://heren1heren:aeou&[{}@cluster0.ypym7h4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const uri = process.env.mongodbKey;
 main().catch((err) => console.log(err));
 async function main() {
-  await mongoose.connect(mongoDB);
+  await mongoose.connect(uri);
 }
 
 const aModelSchema = new Schema({

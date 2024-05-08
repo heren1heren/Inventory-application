@@ -1,3 +1,4 @@
+import './mongoose.js';
 import createError from 'http-errors';
 import express from 'express';
 import { join } from 'path';
@@ -6,6 +7,7 @@ import logger from 'morgan';
 import path from 'path';
 import indexRouter from './routes/index.js';
 import usersRouter from './routes/users.js';
+import inventoryRouter from './routes/inventory.js';
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 
@@ -14,7 +16,7 @@ const app = express();
 
 // view engine setup
 app.set('views', join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.set('view engine', 'pug');
 // const myLogger = function (req, res, next) {
 //   console.log('Request IP: ' + req.ip);
 //   console.log('Request Method: ' + req.method);
@@ -31,7 +33,7 @@ app.use(express.static(join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
+app.use('/inventory', inventoryRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
