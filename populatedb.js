@@ -5,14 +5,15 @@ console.log(
 );
 
 // Get arguments passed on command line
-const userArgs = process.argv.slice(2);
+const userArgs = process.argv.slice(2); // get uri from commandline
 
-import Category from './models/book';
-import Item from './models/author';
+import Category from './models/categoryModel.js';
+import Item from './models/itemModel.js';
 
 const items = [];
 const categories = [];
-import { set, connect, connection } from 'mongoose';
+import mongoose from 'mongoose';
+const { set, connect, connection } = mongoose;
 set('strictQuery', false);
 
 const mongoDB = userArgs[0];
@@ -34,29 +35,20 @@ async function main() {
 // in which the elements of promise.all's argument complete.
 
 async function categoryCreate(index, name, description, url) {
-  const categoryFields = { name, description, url };
+  const categoryFields = { name, description };
   const category = new Category(categoryFields);
   await author.save();
   categories[index] = category;
   console.log(`Added category: ${categoryFields.name} ${categoryFields.url}`);
 }
 
-async function itemCreate(
-  index,
-  name,
-  description,
-  category,
-  price,
-  number,
-  url
-) {
+async function itemCreate(index, name, description, category, price, number) {
   const itemFields = {
     name,
     description,
     category,
     price,
     number,
-    url,
   };
 
   const item = new Item(itemFields);
@@ -68,8 +60,8 @@ async function itemCreate(
 async function createCategories() {
   console.log('Adding catagories');
   await Promise.all([
-    categoryCreate(0, 'food', 'food category for chiefs', 'food'),
-    categoryCreate(1, 'hobby', 'hobby category for goodies', 'hobby'),
+    categoryCreate(0, 'food', 'food category for chiefs'),
+    categoryCreate(1, 'hobby', 'hobby category for goodies'),
   ]);
 }
 
