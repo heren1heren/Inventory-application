@@ -1,0 +1,14 @@
+extends layout
+
+
+block content
+ h1= title 
+     | : #{item.name} 
+ h4 Description:
+    p #{item.description}
+ h4 Category:
+    p #{item.category.name}
+ h4 Price:
+    p #{item.price}
+ h4 Count:
+    p #{item.number}

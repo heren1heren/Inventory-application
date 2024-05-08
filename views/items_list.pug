@@ -1,0 +1,17 @@
+extends layout
+
+block content
+ h1= title
+ hr
+ // check if there is a list  then render list or else render a p: no categories
+ if itemsList.length 
+  ul 
+    h2 List of items:
+  each item in itemsList
+    li
+      h3  
+       a(href=item.url) #{item.name}
+ else 
+     h3 Currently doesn't have any item
+     h3 You can add category by:  
+       a(href='./item/create') Create item 

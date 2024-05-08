@@ -2,12 +2,13 @@ import { Router } from 'express';
 const router = Router(); // instance
 import * as categories_response from '../controller/categories.js';
 import * as items_response from '../controller/items.js';
-//todo: extract route handle to separate file called: controller
+import * as Path from './inventoryPaths.js';
+//todo: extract path into another file;
 // home page
 router.get('/', categories_response.index);
 
 // category routes
-router.get('/categories', categories_response.categories_list);
+router.get(Path.categories_list_path, categories_response.categories_list);
 
 router.get('/category/:id', categories_response.category_detail);
 
