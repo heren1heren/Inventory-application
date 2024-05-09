@@ -1,0 +1,11 @@
+export const category_detail_path = '/category/:id';
+export const category_create_path = '/categories/create';
+export const categories_list_path = '/categories';
+export const category_update_path = '/category/:id/update';
+export const category_delete_path = '/category/:id/delete';
+export const index = '/';
+export const item_list_path = '/items';
+export const item_detail_path = '/item/:id';
+export const item_update_path = '/item/:id/update';
+export const item_delete_path = '/item/:id/delete';
+export const item_create_path = '/items/create';

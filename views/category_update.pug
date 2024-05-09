@@ -1,0 +1,16 @@
+
+extends layout
+
+block content
+
+  h1= title
+  hr
+  form(Method='POST')
+   div.form-group
+     label(for='name') Name:
+     input#name.form-control(type='text' value=category.name name='name' required=true)
+     hr
+     label(for='description') Description:
+     input#description.form-control(type='text' value=category.description name='description' required=true)
+     hr
+     button.btn.btn-primary(type='submit') Submit
