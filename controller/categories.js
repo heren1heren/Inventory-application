@@ -60,7 +60,7 @@ export const category_create_post = [
       .escape(),
   ],
   //processing
-  async (req, res, next) => {
+  asyncHandler(async (req, res, next) => {
     // push validation results inside errors variable
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -79,7 +79,7 @@ export const category_create_post = [
     });
     category.save();
     res.redirect('/inventory/categories');
-  },
+  }),
 ];
 export const category_delete_get = asyncHandler(async (req, res, next) => {
   const category = await Category.findById(req.params.id).exec();
@@ -95,12 +95,47 @@ export const category_delete_get = asyncHandler(async (req, res, next) => {
   });
 });
 export const category_delete_post = asyncHandler(async (req, res, next) => {
+  await Category.findByIdAndDelete(req.params.id); // forget await key word and it won't work
   res.redirect('/inventory/categories');
 });
 export const category_update_get = asyncHandler(async (req, res, next) => {
   const category = await Category.findById(req.params.id).exec();
+
   res.render('category_update', { title: 'Update Category', category });
 });
-export const category_update_post = asyncHandler(async (req, res, next) => {
-  res.send('not implemented');
-});
+export const category_update_post = [
+  // validating
+  [
+    body('name')
+      .trim()
+      .isLength({ min: 1 })
+      .withMessage('name is empty')
+      .isAlpha()
+      .withMessage('name must be alphabetic')
+      .escape(),
+
+    body('description')
+      .trim()
+      .isLength({ min: 10 })
+      .withMessage('description must be longer than 10 characters')
+      .escape(),
+  ],
+  //processing
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.render('category_create', {
+        title: 'Create Category',
+        errors: errors.errors,
+      });
+      return;
+    }
+    const updatedCategory = new Category({
+      name: req.body.name,
+      description: req.body.description,
+      _id: req.params.id,
+    });
+    await Category.findByIdAndUpdate(req.params.id, updatedCategory);
+    res.redirect('/inventory/categories');
+  }),
+];

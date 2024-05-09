@@ -22,3 +22,8 @@ block content
             label(for='number') Number:
             input#number.form-control(type='number' value=1 name='number')
         button.btn.btn-primary(type='submit') Submit
+    if errors
+     ul
+      for error in errors
+        li= error.msg
+
