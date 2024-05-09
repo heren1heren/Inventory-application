@@ -1,4 +1,24 @@
+
 extends layout
 
-
 block content
+
+    h1= title
+    hr
+    form(Method='POST')
+        div.form-group
+            label(for='name') Name:
+            input#name.form-control(type='text' placeholder='namy' name='name' required=true)
+            hr
+            label(for='description') Description:
+            input#description.form-control(type='text' placeholder='describe me' name='description' required=true)
+            hr
+            label(for='category') Category:
+            select#category(required=true name='category') 
+                each option in categories 
+                    option(value=option.id) #{option.name} 
+            label(for='price') Price:
+            input#price.form-control(type='number' value=1 name='price')
+            label(for='number') Number:
+            input#number.form-control(type='number' value=1 name='number')
+        button.btn.btn-primary(type='submit') Submit

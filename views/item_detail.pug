@@ -4,6 +4,7 @@ extends layout
 block content
  h1= title 
      | : #{item.name} 
+ hr
  h4 Description:
     p #{item.description}
  h4 Category:
@@ -11,4 +12,9 @@ block content
  h4 Price:
     p #{item.price}
  h4 Count:
-    p #{item.number}
+    p #{item.number}  
+ a(href= item.url + '/delete')  Delele Item
+ 
+ div
+  a(href= item.url + '/update')   Update Item
+

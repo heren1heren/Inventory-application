@@ -2,20 +2,26 @@ extends layout
 
 
 block content
- h1 #{title}: #{category.name}
- 
-  h4 Description:
-    p #{category.description}
-  //populate each item of this category here: how?
-  h4 List of items: 
-  if items.length 
-    ul
-    each item in items
-      li #{item.name} 
-      p Url: 
-       a(href=item.url) #{item.url}
-  else
-    p this category does not have any item yet
-    p You can create a first item for it by:
-     a(href='/inventory/items/create') Create Item
-    
+  h1 #{title}: #{category.name}
+    hr
+    h4 Description:
+      p #{category.description}
+
+    //populate each item of this category here: how?
+    h4 List of items: 
+    if items.length 
+      ul
+      each item in items
+        li #{item.name} 
+        p Url: 
+          a(href=item.url) #{item.url}
+    else
+      p this category does not have any item yet
+      p You can create a first item for it by:
+        a(href='/inventory/items/create') Create Item
+
+    hr
+    a(href=category.url + '/update') Update Category
+    div
+      a(href=category.url + '/delete') Delete Category
+

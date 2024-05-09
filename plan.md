@@ -1,12 +1,8 @@
 WTD:
 
-- implementing item_detail view
-  -createing a paths.js that store each hard code path
-
-- creating view templates
-
-  - index view need mongodb count data
-    - access mongodb count data
+- # implementing view templates and routes handlers:
+  **todo** implementing post http handlers
+  total of 6 post routes handlers: create post -> delete post -> update post
 
 Problems:
 paths url need to be correctly designed to handle each id and create new stuff
