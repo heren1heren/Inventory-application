@@ -5,10 +5,12 @@ block content
  hr
  // check if there is a list  then render list or else render a p: no categories
  if categoriesList.length 
-  ul List of categories:
+  ul 
+    h2 List of categories (#{categoriesCount}):
   each category in categoriesList
-    li 
-      a(href=category.url) #{category.name}
+    li
+      h3  
+       a(href=category.url) #{category.name}
  else 
      h3 Currently doesn't have any category
      h3 You can add category by:  

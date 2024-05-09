@@ -1,0 +1,26 @@
+
+extends layout
+
+block content
+
+    h1= title
+    hr
+    form(Method='POST')
+        div.form-group
+            label(for='name') Name:
+            input#name.form-control(type='text' value=item.name name='name' required=true)
+            hr
+            label(for='description') Description:
+            input#description.form-control(type='text' value=item.description name='description' required=true)
+            hr
+            label(for='category') Category:
+            select#category(required=true name='category') 
+                each option in categories 
+                    if(item.category == option.id)
+                      option(value=option.id selected) #{option.name}
+                    option(value=option.id) #{option.name} 
+            label(for='price') Price:
+            input#price.form-control(type='number' value=item.price name='price')
+            label(for='number') Number:
+            input#number.form-control(type='number' value=item.number name='number')
+        button.btn.btn-primary(type='submit') Submit
